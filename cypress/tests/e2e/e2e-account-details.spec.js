@@ -26,4 +26,22 @@ describe('Account details spec', () => {
         cy.getBySel('user-settings-email-input').should('have.value',users.testuser.email);
         cy.getBySel('user-settings-phoneNumber-input').should('have.value',users.testuser.phoneNumber);
     });
+
+    it('should see helper text and disabled save button for invalid phone', function () {
+        cy.login('ship', '12345678');
+
+        cy.getBySel('sidenav-user-settings').click();
+        cy.getBySel('user-settings-email-input').type('invalidemail');
+        cy.get('[id="user-settings-email-input-helper-text"').contains('Must contain a valid email address');
+        cy.getBySel('user-settings-submit').should('be.disabled');
+    });
+
+    it('should see helper text and disabled save button for invalid phone', function () {
+        cy.login('ship', '12345678');
+
+        cy.getBySel('sidenav-user-settings').click();
+        cy.getBySel('user-settings-phoneNumber-input').type('invalidphone');
+        cy.get('[id="user-settings-phoneNumber-input-helper-text"').contains('Phone number is not valid');
+        cy.getBySel('user-settings-submit').should('be.disabled');
+    });
 });
