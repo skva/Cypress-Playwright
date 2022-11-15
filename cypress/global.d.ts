@@ -98,6 +98,11 @@ declare namespace Cypress {
     /**
      * Logs-in user by using UI
      */
+    fillBankAccountFields(bankName: string, routingName: string, accountNumber: string): void;
+
+    /**
+     * Logs-in user by using UI
+     */
     login(username: string, password: string, loginOptions?: LoginOptions): void;
 
     /**

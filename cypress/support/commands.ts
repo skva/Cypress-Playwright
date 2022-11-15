@@ -39,6 +39,13 @@ Cypress.Commands.add("getBySelLike", (selector, ...args) => {
   return cy.get(`[data-test*=${selector}]`, ...args);
 });
 
+Cypress.Commands.add("fillBankAccountFields", (bankName, routingName, accountNumber) => {
+  cy.getBySel('bankaccount-bankName-input').type(bankName);
+  cy.getBySel('bankaccount-routingNumber-input').type(routingName);
+  cy.getBySel('bankaccount-accountNumber-input').type(accountNumber);
+  cy.getBySel('bankaccount-submit').click();
+})
+
 Cypress.Commands.add("login", (username, password, { rememberUser = false } = {}) => {
   const signinPath = "/signin";
   const log = Cypress.log({
