@@ -32,7 +32,7 @@ describe('Account details spec', () => {
 
         cy.getBySel('sidenav-user-settings').click();
         cy.getBySel('user-settings-email-input').type('invalidemail');
-        cy.get('[id="user-settings-email-input-helper-text"').contains('Must contain a valid email address');
+        cy.get('[id="user-settings-email-input-helper-text"]').contains('Must contain a valid email address');
         cy.getBySel('user-settings-submit').should('be.disabled');
     });
 
@@ -41,7 +41,18 @@ describe('Account details spec', () => {
 
         cy.getBySel('sidenav-user-settings').click();
         cy.getBySel('user-settings-phoneNumber-input').type('invalidphone');
-        cy.get('[id="user-settings-phoneNumber-input-helper-text"').contains('Phone number is not valid');
+        cy.get('[id="user-settings-phoneNumber-input-helper-text"]').contains('Phone number is not valid');
         cy.getBySel('user-settings-submit').should('be.disabled');
+    });
+
+    it.only('should update user account settings', function () {
+        cy.login(users.testuser.username, users.testuser.password);
+
+        cy.getBySel('sidenav-user-settings').click();
+        cy.getBySel('user-settings-firstName-input').clear().type('newname');
+        cy.getBySel('user-settings-submit').click();
+        cy.reload();
+        cy.getBySel('user-settings-firstName-input').should('have.value','newname');
+
     });
 });
