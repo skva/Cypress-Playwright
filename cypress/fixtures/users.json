@@ -8,6 +8,17 @@
     "phoneNumber": "625-316-9882",
     "balance": 168137
   },
+  "newuser": {
+    "username": "ship",
+    "password": "12345678",
+    "firstName": "Jack",
+    "lastName": "Wreck"
+  },
+  "bankaccount" : {
+    "bankName": "12345",
+    "routingName": "123456789",
+    "accountNumber": "123456789"
+  },
   "invaliduser": {
     "username": "invalid_username",
     "password": "invalid_password"
