@@ -96,9 +96,14 @@ declare namespace Cypress {
     nextTransactionFeedPage(service: string, page: number): Chainable<any>;
 
     /**
-     * Logs-in user by using UI
+     * Create bank account
      */
     fillBankAccountFields(bankName: string, routingName: string, accountNumber: string): void;
+
+    /**
+     * Fill registration fields
+     */
+    fillRegisterAccountFields(firstName: string, lastName: string, username: string, password: string): void;
 
     /**
      * Logs-in user by using UI

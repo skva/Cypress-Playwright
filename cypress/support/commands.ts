@@ -46,6 +46,14 @@ Cypress.Commands.add("fillBankAccountFields", (bankName, routingName, accountNum
   cy.getBySel('bankaccount-submit').click();
 })
 
+Cypress.Commands.add("fillRegisterAccountFields", (firstName, lastName, username, password ) => {
+  cy.getBySel('signup-first-name').type(firstName);
+  cy.getBySel('signup-last-name').type(lastName);
+  cy.getBySel('signup-username').type(username);
+  cy.getBySel('signup-password').type(password);
+  cy.getBySel('signup-confirmPassword').type(password);
+})
+
 Cypress.Commands.add("login", (username, password, { rememberUser = false } = {}) => {
   const signinPath = "/signin";
   const log = Cypress.log({

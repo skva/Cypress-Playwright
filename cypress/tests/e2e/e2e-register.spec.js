@@ -13,11 +13,10 @@ describe('Register account spec', () => {
 
     it('should register new user', function () {
         // Create new user
-        cy.getBySel('signup-first-name').type(users.newuser.firstName);
-        cy.getBySel('signup-last-name').type(users.newuser.lastName);
-        cy.getBySel('signup-username').type(users.newuser.username);
-        cy.getBySel('signup-password').type(users.newuser.password);
-        cy.getBySel('signup-confirmPassword').type(users.newuser.password);
+        cy.fillRegisterAccountFields(users.newuser.firstName,
+            users.newuser.lastName,
+            users.newuser.username,
+            users.newuser.password)
         cy.getBySel('signup-submit').click();
 
         // Login created user and complete onboarding
@@ -38,25 +37,13 @@ describe('Register account spec', () => {
         cy.getBySel('sidenav-user-full-name').should( 'contain',(users.newuser.firstName + " " + (Array.from(users.newuser.lastName)[0])));
     });
 
-    it('should see helper text and disabled submit button for password less 4 symbols', function () {
-        cy.getBySel('signup-first-name').type('Jack');
-        cy.getBySel('signup-last-name').type('Wreck');
-        cy.getBySel('signup-username').type('ship');
-        cy.getBySel('signup-password').type('123');
-        cy.getBySel('signup-confirmPassword').type('123');
+    it.only('should see helper text and disabled submit button for password less 4 symbols', function () {
+        cy.fillRegisterAccountFields(users.newuser.firstName,
+            users.newuser.lastName,
+            users.newuser.username,
+            '123')
 
         cy.getBySel('signup-password').contains('Password must contain at least 4 characters');
-        cy.getBySel('signup-submit').should('be.disabled');
-    });
-
-    it('should see helper text and disabled submit button for password less 4 symbols', function () {
-        cy.getBySel('signup-first-name').type(users.newuser.firstName);
-        cy.getBySel('signup-last-name').type(users.newuser.lastName);
-        cy.getBySel('signup-username').type(users.newuser.username);
-        cy.getBySel('signup-password').type('123');
-        cy.getBySel('signup-confirmPassword').type('123');
-
-        cy.getBySel('signup-confirmPassword').contains('Password does not match');
         cy.getBySel('signup-submit').should('be.disabled');
     });
 });
