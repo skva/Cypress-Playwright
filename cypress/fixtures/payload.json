@@ -1,0 +1,6 @@
+{
+  "testtransaction" : {
+    "amount" : "369",
+    "description" : "testdescription"
+  }
+}

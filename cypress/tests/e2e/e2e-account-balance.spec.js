@@ -11,7 +11,6 @@ describe('Account balance spec', () => {
         cy.visit('/');
     });
 
-    // TODO??? Use data from another json
     it('should see account balance', function () {
         cy.login(users.testuser.username, users.testuser.password);
 
