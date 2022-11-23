@@ -37,7 +37,7 @@ describe('Register account spec', () => {
         cy.getBySel('sidenav-user-full-name').should( 'contain',(users.newuser.firstName + " " + (Array.from(users.newuser.lastName)[0])));
     });
 
-    it.only('should see helper text and disabled submit button for password less 4 symbols', function () {
+    it('should see helper text and disabled submit button for password less 4 symbols', function () {
         cy.fillRegisterAccountFields(users.newuser.firstName,
             users.newuser.lastName,
             users.newuser.username,
