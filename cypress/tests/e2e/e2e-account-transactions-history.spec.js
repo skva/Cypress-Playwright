@@ -28,7 +28,7 @@ describe('Account transactions history spec', () => {
         cy.getBySel('transaction-list-filter-amount-range-button').should('exist');
     })
 
-    it.only('should see created transaction', function () {
+    it('should see created transaction', function () {
         cy.login(users.testuser.username, users.testuser.password);
 
         cy.getBySel('nav-top-new-transaction').click();

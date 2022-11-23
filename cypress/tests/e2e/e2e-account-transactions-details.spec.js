@@ -14,7 +14,7 @@ describe('Account transactions details spec', () => {
     it('should see account transaction details', function () {
         cy.login(users.testuser.username, users.testuser.password);
 
-        cy.getBySel('transaction-item-183VHWyuQMS').click();
+        cy.getBySel('li:nth-child(1)').click();
         cy.getBySel('transaction-detail-header').should('exist');
         cy.getBySel('transaction-sender-avatar').should('exist');
         cy.getBySel('transaction-receiver-avatar').should('exist');
