@@ -1,9 +1,16 @@
 describe('Bank account spec', () => {
     let users;
+    let bankaccounts;
 
     before(() => {
         cy.fixture('users').then(data => {
             users = data;
+        });
+    });
+
+    before(() => {
+        cy.fixture('bankaccounts').then(data => {
+            bankaccounts = data;
         });
     });
 
@@ -16,13 +23,12 @@ describe('Bank account spec', () => {
 
         cy.getBySel('sidenav-bankaccounts').click();
         cy.getBySel('bankaccount-new').click();
-        // TODO Refactor to commands
-        cy.getBySel('bankaccount-bankName-input').type('123456');
-        cy.getBySel('bankaccount-routingNumber-input').type('987654321');
-        cy.getBySel('bankaccount-accountNumber-input').type('987654321');
+        cy.getBySel('bankaccount-bankName-input').type(bankaccounts.newBankAccount.bankName);
+        cy.getBySel('bankaccount-routingNumber-input').type(bankaccounts.newBankAccount.routingNumber);
+        cy.getBySel('bankaccount-accountNumber-input').type(bankaccounts.newBankAccount.accountNumber);
         cy.getBySel('bankaccount-submit').click();
 
-        cy.get('[data-test^="bankaccount-list"]').contains('123456');
+        cy.get('[data-test^="bankaccount-list"]').contains(bankaccounts.newBankAccount.bankName);
     })
 
     it('should see helper text and disabled save button for bank name less 5 symbols', function () {
@@ -30,12 +36,11 @@ describe('Bank account spec', () => {
 
         cy.getBySel('sidenav-bankaccounts').click();
         cy.getBySel('bankaccount-new').click();
-        // TODO Refactor to commands
         cy.getBySel('bankaccount-bankName-input').type('123');
-        cy.getBySel('bankaccount-routingNumber-input').type('987654321');
-        cy.getBySel('bankaccount-accountNumber-input').type('987654321');
+        cy.getBySel('bankaccount-routingNumber-input').type(bankaccounts.newBankAccount.routingNumber);
+        cy.getBySel('bankaccount-accountNumber-input').type(bankaccounts.newBankAccount.accountNumber);
 
-        cy.getBySel('[id="bankaccount-bankName-input-helper-text"]').contains('Password must contain at least 4 characters');
+        cy.getBySel('bankaccount-bankName-input').contains('Must contain at least 5 characters');
         cy.getBySel('bankaccount-submit').should('be.disabled');
     })
 
@@ -43,10 +48,8 @@ describe('Bank account spec', () => {
         cy.login(users.testuser.username, users.testuser.password);
 
         cy.getBySel('sidenav-bankaccounts').click();
-        // TODO Find correct Delete button
-        cy.getBySel('bankaccount-delete').click();
+        cy.get('li:nth-child(1) [data-test="bankaccount-delete"]').click();
         cy.reload();
-        cy.getBySel('bankaccount-delete').should('not.exist');
-
+        cy.get('li:nth-child(1)').should('not.have.class', 'MuiButton-label');
     })
 });
