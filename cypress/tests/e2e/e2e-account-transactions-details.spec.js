@@ -30,7 +30,7 @@ describe('Account transactions details spec', () => {
         cy.get('li:nth-child(1)').contains(payload.testtransaction.amount)
     })
 
-    it.only('should see like after click on bell', function () {
+    it('should see like after click on bell', function () {
         cy.login(users.testuser.username, users.testuser.password);
 
         cy.get('div:nth-child(1) > li').click();

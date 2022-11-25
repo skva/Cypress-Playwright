@@ -21,10 +21,10 @@ describe('Account transactions history spec', () => {
         cy.getBySel('transaction-list-filter-amount-range-button').should('exist');
     })
 
-    it('mine should underlined after click', function () {
+    it('mine should be underlined after click', function () {
         cy.login(users.testuser.username, users.testuser.password);
 
         cy.getBySel('nav-personal-tab').click();
-        cy.get('[class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"]').should('exist');
+        cy.getBySel('nav-personal-tab').should('have.attr', 'aria-selected', 'true');
     })
 });
