@@ -3,6 +3,8 @@
     "bankName" : "123456",
     "routingNumber" : "987654321",
     "accountNumber" : "987654321"
+  },
+  "deleteBankAccount" : {
+    "bankAccountId" : "RskoB7r4Bic"
   }
-
 }
