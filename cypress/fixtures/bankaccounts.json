@@ -4,7 +4,7 @@
     "routingNumber" : "987654321",
     "accountNumber" : "987654321"
   },
-  "deleteBankAccount" : {
+  "bankAccount" : {
     "bankAccountId" : "RskoB7r4Bic"
   }
 }

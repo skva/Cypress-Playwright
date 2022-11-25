@@ -42,13 +42,13 @@ describe('Bank accounts', () => {
     it('should delete bank account', () => {
         cy.request({
             method: 'DELETE',
-            url: `${Cypress.env("apiUrl")}/bankaccounts/${bankaccounts.deleteBankAccount.bankAccountId}`,
+            url: `${Cypress.env("apiUrl")}/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`,
         }).then(response => {
             expect(response.status).to.eq(200);
         });
         cy.request({
             method: 'GET',
-            url: `${Cypress.env("apiUrl")}/bankaccounts/${bankaccounts.deleteBankAccount.bankAccountId}`,
+            url: `${Cypress.env("apiUrl")}/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`,
         }).then(response => {
             expect(response.body.account.isDeleted).eql(true);
         });
