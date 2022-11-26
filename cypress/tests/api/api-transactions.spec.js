@@ -6,9 +6,6 @@ describe('Transactions', () => {
         cy.fixture('users').then(data => {
             users = data;
         });
-    });
-
-    before(() => {
         cy.fixture('transactions').then(data => {
             transactions = data;
         });
@@ -21,9 +18,9 @@ describe('Transactions', () => {
     it('should create comment', () => {
         cy.request({
             method: 'POST',
-            url: `${Cypress.env("apiUrl")}/comments/${transactions.transaction.transactionId}`,
+            url: `${Cypress.env("apiUrl")}/comments/${transactions.testtransaction.transactionId}`,
             body: {
-                "content": "api withodsadut id",
+                "content": "api",
                 "transactionId": "183VHWyuQMS"
             }
         }).then(response => {

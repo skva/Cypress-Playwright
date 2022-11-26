@@ -1,16 +1,13 @@
 describe('Account transactions details spec', () => {
     let users;
-    let payload;
+    let transactions;
 
     before(() => {
         cy.fixture('users').then(data => {
             users = data;
         });
-    });
-
-    before(() => {
-        cy.fixture('payload').then(data => {
-            payload = data;
+        cy.fixture('transactions').then(data => {
+            transactions = data;
         });
     });
 
@@ -22,11 +19,11 @@ describe('Account transactions details spec', () => {
     it('should see created transaction', function () {
         cy.getBySel('nav-top-new-transaction').click();
         cy.get('li:nth-child(1)').click();
-        cy.getBySel('transaction-create-amount-input').type(payload.testtransaction.amount);
-        cy.getBySel('transaction-create-description-input').type(payload.testtransaction.description);
+        cy.getBySel('transaction-create-amount-input').type(transactions.testtransaction.amount);
+        cy.getBySel('transaction-create-description-input').type(transactions.testtransaction.description);
         cy.getBySel('transaction-create-submit-request').click();
         cy.getBySel('new-transaction-return-to-transactions').click();
-        cy.get('li:nth-child(1)').contains(payload.testtransaction.amount)
+        cy.get('li:nth-child(1)').contains(transactions.testtransaction.amount)
     })
 
     it('should see like after click on bell', function () {

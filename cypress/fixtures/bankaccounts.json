@@ -5,6 +5,9 @@
     "accountNumber" : "987654321"
   },
   "bankAccount" : {
+    "bankName": "12345",
+    "routingName": "123456789",
+    "accountNumber": "123456789",
     "bankAccountId" : "RskoB7r4Bic"
   }
 }

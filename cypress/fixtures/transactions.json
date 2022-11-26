@@ -1,5 +1,7 @@
 {
-  "transaction": {
+  "testtransaction": {
+    "amount" : "369",
+    "description" : "testdescription",
     "transactionId": "183VHWyuQMS"
   }
 }

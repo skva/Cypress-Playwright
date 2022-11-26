@@ -6,9 +6,6 @@ describe('Bank accounts', () => {
         cy.fixture('users').then(data => {
             users = data;
         });
-    });
-
-    before(() => {
         cy.fixture('bankaccounts').then(data => {
             bankaccounts = data;
         });

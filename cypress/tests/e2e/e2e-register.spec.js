@@ -1,10 +1,14 @@
 describe('Register account spec', () => {
     let users;
+    let bankAccounts;
 
     before(() => {
         cy.fixture('users').then(data => {
             users = data;
         });
+        cy.fixture('bankAccounts').then(data => {
+            bankAccounts = data;
+        })
     });
 
     beforeEach(() => {
@@ -27,7 +31,7 @@ describe('Register account spec', () => {
 
         // Create bank account
         cy.getBySel('user-onboarding-dialog-title').should('exist');
-        cy.fillBankAccountFields(users.bankaccount.bankName, users.bankaccount.routingName, users.bankaccount.accountNumber)
+        cy.fillBankAccountFields(bankAccounts.bankAccount.bankName, bankAccounts.bankAccount.routingName, bankAccounts.bankAccount.accountNumber)
 
         // Complete onboarding
         cy.getBySel('user-onboarding-dialog-title').should('exist');

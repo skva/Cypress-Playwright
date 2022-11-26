@@ -14,11 +14,6 @@
     "firstName": "Jack",
     "lastName": "Wreck"
   },
-  "bankaccount" : {
-    "bankName": "12345",
-    "routingName": "123456789",
-    "accountNumber": "123456789"
-  },
   "invaliduser": {
     "username": "invalid_username",
     "password": "invalid_password",
