@@ -9,11 +9,10 @@ describe('Account balance spec', () => {
 
     beforeEach(() => {
         cy.visit('/');
+        cy.login(users.testuser.username, users.testuser.password);
     });
 
     it('should see account balance', function () {
-        cy.login(users.testuser.username, users.testuser.password);
-
         cy.getBySel('sidenav-user-balance')
             .invoke('text')
             .invoke('replace', /\D/g, '')

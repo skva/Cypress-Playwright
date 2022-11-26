@@ -9,11 +9,10 @@ describe('Account transactions history spec', () => {
 
     beforeEach(() => {
         cy.visit('/');
+        cy.login(users.testuser.username, users.testuser.password);
     });
 
     it('should see account transactions history', function () {
-        cy.login(users.testuser.username, users.testuser.password);
-
         cy.getBySel('nav-public-tab').should('exist');
         cy.getBySel('nav-contacts-tab').should('exist');
         cy.getBySel('nav-personal-tab').should('exist');
@@ -22,8 +21,6 @@ describe('Account transactions history spec', () => {
     })
 
     it('mine should be underlined after click', function () {
-        cy.login(users.testuser.username, users.testuser.password);
-
         cy.getBySel('nav-personal-tab').click();
         cy.getBySel('nav-personal-tab').should('have.attr', 'aria-selected', 'true');
     })

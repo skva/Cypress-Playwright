@@ -16,11 +16,10 @@ describe('Bank account spec', () => {
 
     beforeEach(() => {
         cy.visit('/');
+        cy.login(users.testuser.username, users.testuser.password);
     });
 
     it('should add new bank account', function () {
-        cy.login(users.testuser.username, users.testuser.password);
-
         cy.getBySel('sidenav-bankaccounts').click();
         cy.getBySel('bankaccount-new').click();
         cy.getBySel('bankaccount-bankName-input').type(bankaccounts.newBankAccount.bankName);
@@ -32,8 +31,6 @@ describe('Bank account spec', () => {
     })
 
     it('should see helper text and disabled save button for bank name less 5 symbols', function () {
-        cy.login(users.testuser.username, users.testuser.password);
-
         cy.getBySel('sidenav-bankaccounts').click();
         cy.getBySel('bankaccount-new').click();
         cy.getBySel('bankaccount-bankName-input').type('123');
@@ -45,8 +42,6 @@ describe('Bank account spec', () => {
     })
 
     it('should delete bank account', function () {
-        cy.login(users.testuser.username, users.testuser.password);
-
         cy.getBySel('sidenav-bankaccounts').click();
         cy.get('li:nth-child(1) [data-test="bankaccount-delete"]').click();
         cy.reload();
