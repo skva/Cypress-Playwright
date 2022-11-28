@@ -38,7 +38,7 @@ describe('Register account', () => {
         cy.get("[data-test='user-onboarding-dialog-content']").should('exist');
         cy.get("[data-test='user-onboarding-next']").click();
 
-        cy.get('sidenav-user-full-name').should( 'contain',(users.newuser.firstName + " " + users.newuser.shortLastName));
+        cy.get("[data-test='sidenav-user-full-name']").should( 'contain',(users.newuser.firstName + " " + users.newuser.shortLastName));
     });
 
     it('Helper text should appear below password field if input less 4 symbols', function () {

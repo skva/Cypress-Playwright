@@ -24,7 +24,7 @@ describe('Bank account', () => {
         cy.get("[data-test='bankaccount-accountNumber-input']").type(bankaccounts.newBankAccount.accountNumber);
         cy.get("[data-test='bankaccount-submit']").click();
 
-        cy.get('[data-test^="bankaccount-list"]').contains(bankaccounts.newBankAccount.bankName);
+        cy.get("[data-test='bankaccount-list']").contains(bankaccounts.newBankAccount.bankName);
     })
 
     it('Helper text should appear and save button should be disabled if input bank name less 5 symbols', function () {
