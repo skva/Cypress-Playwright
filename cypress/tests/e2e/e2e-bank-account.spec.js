@@ -1,4 +1,4 @@
-describe('Bank account spec', () => {
+describe('Bank account', () => {
     let users;
     let bankaccounts;
 
@@ -16,30 +16,30 @@ describe('Bank account spec', () => {
         cy.login(users.testuser.username, users.testuser.password);
     });
 
-    it('should add new bank account', function () {
-        cy.getBySel('sidenav-bankaccounts').click();
-        cy.getBySel('bankaccount-new').click();
-        cy.getBySel('bankaccount-bankName-input').type(bankaccounts.newBankAccount.bankName);
-        cy.getBySel('bankaccount-routingNumber-input').type(bankaccounts.newBankAccount.routingNumber);
-        cy.getBySel('bankaccount-accountNumber-input').type(bankaccounts.newBankAccount.accountNumber);
-        cy.getBySel('bankaccount-submit').click();
+    it('New bank account should be created successfully', function () {
+        cy.get("[data-test='sidenav-bankaccounts']").click();
+        cy.get("[data-test='bankaccount-new']").click();
+        cy.get("[data-test='bankaccount-bankName-input']").type(bankaccounts.newBankAccount.bankName);
+        cy.get("[data-test='bankaccount-routingNumber-input']").type(bankaccounts.newBankAccount.routingNumber);
+        cy.get("[data-test='bankaccount-accountNumber-input']").type(bankaccounts.newBankAccount.accountNumber);
+        cy.get("[data-test='bankaccount-submit']").click();
 
         cy.get('[data-test^="bankaccount-list"]').contains(bankaccounts.newBankAccount.bankName);
     })
 
-    it('should see helper text and disabled save button for bank name less 5 symbols', function () {
-        cy.getBySel('sidenav-bankaccounts').click();
-        cy.getBySel('bankaccount-new').click();
-        cy.getBySel('bankaccount-bankName-input').type('123');
-        cy.getBySel('bankaccount-routingNumber-input').type(bankaccounts.newBankAccount.routingNumber);
-        cy.getBySel('bankaccount-accountNumber-input').type(bankaccounts.newBankAccount.accountNumber);
+    it('Helper text should appear and save button should be disabled if input bank name less 5 symbols', function () {
+        cy.get("[data-test='sidenav-bankaccounts']").click();
+        cy.get("[data-test='bankaccount-new']").click();
+        cy.get("[data-test='bankaccount-bankName-input']").type('123');
+        cy.get("[data-test='bankaccount-routingNumber-input']").type(bankaccounts.newBankAccount.routingNumber);
+        cy.get("[data-test='bankaccount-accountNumber-input']").type(bankaccounts.newBankAccount.accountNumber);
 
-        cy.getBySel('bankaccount-bankName-input').contains('Must contain at least 5 characters');
-        cy.getBySel('bankaccount-submit').should('be.disabled');
+        cy.get("[data-test='bankaccount-bankName-input']").contains('Must contain at least 5 characters');
+        cy.get("[data-test='bankaccount-submit']").should('be.disabled');
     })
 
-    it('should delete bank account', function () {
-        cy.getBySel('sidenav-bankaccounts').click();
+    it('Bank account should be deleted successfully', function () {
+        cy.get("[data-test='sidenav-bankaccounts']").click();
         cy.get('li:nth-child(1) [data-test="bankaccount-delete"]').click();
         cy.reload();
         cy.get('li:nth-child(1)').should('not.have.class', 'MuiButton-label');

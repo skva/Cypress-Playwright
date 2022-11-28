@@ -11,7 +11,7 @@ describe('User profile', () => {
         cy.loginByApi(users.testuser.username, users.testuser.password);
     });
 
-    it('should get user profile', () => {
+    it('Get profile by username should respond with code 200 and correct response body', () => {
         cy.request({
             method: 'GET',
             url: `${Cypress.env("apiUrl")}/users/profile/${users.testuser.username}`,

@@ -1,4 +1,4 @@
-describe('Register account spec', () => {
+describe('Register account', () => {
     let users;
     let bankAccounts;
 
@@ -15,39 +15,39 @@ describe('Register account spec', () => {
         cy.visit('/signup');
     });
 
-    it('should register new user', function () {
+    it('Registration of a new user should be successful', function () {
         // Create new user
         cy.fillRegisterAccountFields(users.newuser.firstName,
             users.newuser.lastName,
             users.newuser.username,
             users.newuser.password)
-        cy.getBySel('signup-submit').click();
+        cy.get("[data-test='signup-submit']").click();
 
         // Login created user and complete onboarding
         cy.login(users.newuser.username, users.newuser.password);
-        cy.getBySel('user-onboarding-dialog-title').should('exist');
-        cy.getBySel('user-onboarding-dialog-content').should('exist');
-        cy.getBySel('user-onboarding-next').click();
+        cy.get("[data-test='user-onboarding-dialog-title']").should('exist');
+        cy.get("[data-test='user-onboarding-dialog-content']").should('exist');
+        cy.get("[data-test='user-onboarding-next']").click();
 
         // Create bank account
-        cy.getBySel('user-onboarding-dialog-title').should('exist');
+        cy.get("[data-test='user-onboarding-dialog-title']").should('exist');
         cy.fillBankAccountFields(bankAccounts.bankAccount.bankName, bankAccounts.bankAccount.routingName, bankAccounts.bankAccount.accountNumber)
 
         // Complete onboarding
-        cy.getBySel('user-onboarding-dialog-title').should('exist');
-        cy.getBySel('user-onboarding-dialog-content').should('exist');
-        cy.getBySel('user-onboarding-next').click();
+        cy.get("[data-test='user-onboarding-dialog-title']").should('exist');
+        cy.get("[data-test='user-onboarding-dialog-content']").should('exist');
+        cy.get("[data-test='user-onboarding-next']").click();
 
-        cy.getBySel('sidenav-user-full-name').should( 'contain',(users.newuser.firstName + " " + (Array.from(users.newuser.lastName)[0])));
+        cy.get('sidenav-user-full-name').should( 'contain',(users.newuser.firstName + " " + users.newuser.shortLastName));
     });
 
-    it('should see helper text and disabled submit button for password less 4 symbols', function () {
+    it('Helper text should appear below password field if input less 4 symbols', function () {
         cy.fillRegisterAccountFields(users.newuser.firstName,
             users.newuser.lastName,
             users.newuser.username,
             '123')
 
-        cy.getBySel('signup-password').contains('Password must contain at least 4 characters');
-        cy.getBySel('signup-submit').should('be.disabled');
+        cy.get("[data-test='signup-password']").contains('Password must contain at least 4 characters');
+        cy.get("[data-test='signup-submit']").should('be.disabled');
     });
 });

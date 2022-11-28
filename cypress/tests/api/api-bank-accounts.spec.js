@@ -15,7 +15,7 @@ describe('Bank accounts', () => {
         cy.loginByApi(users.testuser.username, users.testuser.password);
     });
 
-    it('should get bank accounts', () => {
+    it('Get bankaccounts should respond with code 200 and correct response body', () => {
         cy.request({
             method: 'GET',
             url: `${Cypress.env("apiUrl")}/bankaccounts`,

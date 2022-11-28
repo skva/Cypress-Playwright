@@ -1,4 +1,4 @@
-describe('Account balance spec', () => {
+describe('Account balance', () => {
     let users;
 
     before(() => {
@@ -12,8 +12,8 @@ describe('Account balance spec', () => {
         cy.login(users.testuser.username, users.testuser.password);
     });
 
-    it('should see account balance', function () {
-        cy.getBySel('sidenav-user-balance')
+    it('Account balance field should have correct value', function () {
+        cy.get("[data-test='sidenav-user-balance'")
             .invoke('text')
             .invoke('replace', /\D/g, '')
             .then(parseInt)

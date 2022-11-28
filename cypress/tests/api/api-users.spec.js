@@ -11,7 +11,7 @@ describe('Users', () => {
         cy.loginByApi(users.testuser.username, users.testuser.password);
     });
 
-    it('should get users', () => {
+    it('Get users should respond with code 200 and correct response body', () => {
         cy.request({
             method: 'GET',
             url: `${Cypress.env("apiUrl")}/users`,

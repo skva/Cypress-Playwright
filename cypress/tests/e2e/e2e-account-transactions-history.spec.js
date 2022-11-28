@@ -1,4 +1,4 @@
-describe('Account transactions history spec', () => {
+describe('Account transactions history', () => {
     let users;
 
     before(() => {
@@ -12,16 +12,16 @@ describe('Account transactions history spec', () => {
         cy.login(users.testuser.username, users.testuser.password);
     });
 
-    it('should see account transactions history', function () {
-        cy.getBySel('nav-public-tab').should('exist');
-        cy.getBySel('nav-contacts-tab').should('exist');
-        cy.getBySel('nav-personal-tab').should('exist');
-        cy.getBySel('transaction-list-filter-date-range-button').should('exist');
-        cy.getBySel('transaction-list-filter-amount-range-button').should('exist');
+    it('Account transaction history should be visible', function () {
+        cy.get("[data-test='nav-public-tab']").should('exist');
+        cy.get("[data-test='nav-contacts-tab']").should('exist');
+        cy.get("[data-test='nav-personal-tab']").should('exist');
+        cy.get("[data-test='transaction-list-filter-date-range-button']").should('exist');
+        cy.get("[data-test='transaction-list-filter-amount-range-button']").should('exist');
     })
 
-    it('mine should be underlined after click', function () {
-        cy.getBySel('nav-personal-tab').click();
-        cy.getBySel('nav-personal-tab').should('have.attr', 'aria-selected', 'true');
+    it('Mine tab should be underlined after click', function () {
+        cy.get("[data-test='nav-personal-tab']").click();
+        cy.get("[data-test='nav-personal-tab']").should('have.attr', 'aria-selected', 'true');
     })
 });

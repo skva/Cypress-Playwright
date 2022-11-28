@@ -15,7 +15,7 @@ describe('Transactions', () => {
         cy.loginByApi(users.testuser.username, users.testuser.password);
     });
 
-    it('should create comment', () => {
+    it('Post comment should respond with code 200 and correct response body', () => {
         cy.request({
             method: 'POST',
             url: `${Cypress.env("apiUrl")}/comments/${transactions.testtransaction.transactionId}`,
