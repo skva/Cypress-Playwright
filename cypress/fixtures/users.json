@@ -12,7 +12,8 @@
     "username": "ship",
     "password": "12345678",
     "firstName": "Jack",
-    "lastName": "Wreck"
+    "lastName": "Wreck",
+    "shortLastName": "W"
   },
   "invaliduser": {
     "username": "invalid_username",
