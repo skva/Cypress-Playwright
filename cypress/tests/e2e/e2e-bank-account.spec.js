@@ -38,10 +38,10 @@ describe('Bank account', () => {
         cy.get("[data-test='bankaccount-submit']").should('be.disabled');
     })
 
-    it('Bank account should be deleted successfully', function () {
+    it.only('Bank account should be deleted successfully', function () {
         cy.get("[data-test='sidenav-bankaccounts']").click();
-        cy.get('li:nth-child(1) [data-test="bankaccount-delete"]').click();
+        cy.get("[data-test='bankaccount-delete']").first().click();
         cy.reload();
-        cy.get('li:nth-child(1)').should('not.have.class', 'MuiButton-label');
+        cy.get("[data-test^='bankaccount-list-item-']").first().should('not.have.class', 'MuiButton-label');
     })
 });
