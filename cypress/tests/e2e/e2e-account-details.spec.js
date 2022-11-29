@@ -30,7 +30,7 @@ describe('Account details', () => {
     it('Helper text should appear below phone field if input invalid phone', function () {
         cy.get("[data-test='sidenav-user-settings']").click();
         cy.get("[data-test='user-settings-phoneNumber-input']").clear().type(users.invaliduser.phoneNumber);
-        cy.get("[id='user-settings-email-input-helper-text']").contains('Phone number is not valid');
+        cy.get("[id='user-settings-phoneNumber-input-helper-text']").contains('Phone number is not valid');
         cy.get("[data-test='user-settings-submit']").should('be.disabled');
     });
 

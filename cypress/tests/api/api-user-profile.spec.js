@@ -17,10 +17,7 @@ describe('User profile', () => {
             url: `${Cypress.env("apiUrl")}/users/profile/${users.testuser.username}`,
         }).then(response => {
             expect(response.status).to.eq(200);
-            expect(response.body).to.have.property('user');
-            expect(response.body.user).to.have.property('firstName');
-            expect(response.body.user).to.have.property('lastName');
-            expect(response.body.user).to.have.property('avatar');
+            expect(response.body.user).to.have.all.keys('firstName', 'lastName', 'avatar')
         });
     });
 });

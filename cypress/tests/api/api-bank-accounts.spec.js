@@ -21,20 +21,11 @@ describe('Bank accounts', () => {
             url: `${Cypress.env("apiUrl")}/bankaccounts`,
         }).then(response => {
             expect(response.status).to.eq(200);
-            expect(response.body).to.have.property('results');
-            for (let i = 0; i < ((response.body.results).length); i++) {
-                expect(response.body.results[i]).to.have.property('id');
-                expect(response.body.results[i]).to.have.property('uuid');
-                expect(response.body.results[i]).to.have.property('userId');
-                expect(response.body.results[i]).to.have.property('bankName');
-                expect(response.body.results[i]).to.have.property('accountNumber');
-                expect(response.body.results[i]).to.have.property('routingNumber');
-                expect(response.body.results[i]).to.have.property('isDeleted');
-                expect(response.body.results[i]).to.have.property('createdAt');
-                expect(response.body.results[i]).to.have.property('modifiedAt');
-            }
-        });
-    });
+            Cypress._.each(response.body.results, (res) => {
+                expect(res).to.have.all.keys('id', 'uuid', 'userId', 'bankName', 'accountNumber', 'routingNumber', 'isDeleted', 'createdAt', 'modifiedAt')
+            })
+        })
+    })
 
     it('should delete bank account', () => {
         cy.request({
