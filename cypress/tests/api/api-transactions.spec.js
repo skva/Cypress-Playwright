@@ -1,3 +1,5 @@
+import transactions from "../../fixtures/transactions.json";
+
 describe('Transactions', () => {
     let users;
     let transactions;
@@ -21,7 +23,7 @@ describe('Transactions', () => {
             url: `${Cypress.env("apiUrl")}/comments/${transactions.testtransaction.transactionId}`,
             body: {
                 "content": "api",
-                "transactionId": "183VHWyuQMS"
+                "transactionId": `${transactions.testtransaction.transactionId}`
             }
         }).then(response => {
             expect(response.status).to.eq(200);

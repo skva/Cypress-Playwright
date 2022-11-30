@@ -1,8 +1,7 @@
 import {expect, test} from "@playwright/test";
-import users from "../../../cypress/fixtures/users.json";
 import bankaccounts from "../../../cypress/fixtures/bankaccounts.json";
 
-test.describe('GET /bankaccounts', () => {
+test.describe('Bank accounts', () => {
     test.beforeEach(async ({request}) => {
         await request.post('http://localhost:3002/login', {
             data: {
@@ -15,11 +14,6 @@ test.describe('GET /bankaccounts', () => {
 
     test("Get bankaccounts should respond with code 200 and correct response body", async ({ request}) => {
         const response = await request.get(`http://localhost:3002/bankaccounts`, {
-            data: {
-                type: "LOGIN",
-                username: "Katharina_Bernier",
-                password: "s3cret"
-            },
         });
         expect(response.status()).toBe(200);
         const body = JSON.parse(await response.text());
@@ -40,19 +34,9 @@ test.describe('GET /bankaccounts', () => {
 
     test("Should delete bank account", async ({ request}) => {
         const delResponse = await request.delete(`http://localhost:3002/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`, {
-            data: {
-                type: "LOGIN",
-                username: "Katharina_Bernier",
-                password: "s3cret"
-            },
         });
         expect(delResponse.status()).toBe(200);
         const getResponse = await request.get(`http://localhost:3002/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`, {
-            data: {
-                type: "LOGIN",
-                username: "Katharina_Bernier",
-                password: "s3cret"
-            },
         });
         expect(getResponse.status()).toBe(200);
         const body = JSON.parse(await getResponse.text());
