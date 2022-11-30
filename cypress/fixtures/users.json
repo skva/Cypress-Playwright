@@ -6,7 +6,8 @@
     "lastName": "Johns",
     "email": "Norene39@yahoo.com",
     "phoneNumber": "625-316-9882",
-    "balance": 168137
+    "balance": 168137,
+    "dollarBalance": "$1,681.37"
   },
   "newuser": {
     "username": "ship",
