@@ -13,8 +13,7 @@ test.describe('Bank accounts', () => {
     });
 
     test("Get bankaccounts should respond with code 200 and correct response body", async ({ request}) => {
-        const response = await request.get(`http://localhost:3002/bankaccounts`, {
-        });
+        const response = await request.get(`http://localhost:3002/bankaccounts`);
         expect(response.status()).toBe(200);
         const body = JSON.parse(await response.text());
         await expect(body.results[0]).toHaveProperty('id');
@@ -33,11 +32,11 @@ test.describe('Bank accounts', () => {
     });
 
     test("Should delete bank account", async ({ request}) => {
-        const delResponse = await request.delete(`http://localhost:3002/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`, {
-        });
+        const delResponse =
+            await request.delete(`http://localhost:3002/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`);
         expect(delResponse.status()).toBe(200);
-        const getResponse = await request.get(`http://localhost:3002/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`, {
-        });
+        const getResponse =
+            await request.get(`http://localhost:3002/bankaccounts/${bankaccounts.bankAccount.bankAccountId}`);
         expect(getResponse.status()).toBe(200);
         const body = JSON.parse(await getResponse.text());
         await expect(body.account).toHaveProperty('isDeleted', true);
