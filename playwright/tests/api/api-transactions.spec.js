@@ -20,6 +20,6 @@ test.describe('Transactions', () => {
             },
         });
         expect(response.status()).toBe(200);
-        expect(response.statusText()).toContain("OK")
+        expect(response.statusText()).toContain("OK");
     });
 })

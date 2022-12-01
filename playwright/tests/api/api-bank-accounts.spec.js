@@ -16,19 +16,17 @@ test.describe('Bank accounts', () => {
         const response = await request.get(`/bankaccounts`);
         expect(response.status()).toBe(200);
         const body = JSON.parse(await response.text());
-        await expect(body.results[0]).toHaveProperty('id');
-        await expect(body.results[0]).toHaveProperty('uuid');
-        await expect(body.results[0]).toHaveProperty('userId');
-        await expect(body.results[0]).toHaveProperty('bankName');
-        await expect(body.results[0]).toHaveProperty('accountNumber');
-        await expect(body.results[0]).toHaveProperty('routingNumber');
-        await expect(body.results[0]).toHaveProperty('isDeleted');
-        await expect(body.results[0]).toHaveProperty('createdAt');
-        await expect(body.results[0]).toHaveProperty('modifiedAt');
-        // await body.results.each(async el => {
-        //     await expect(el).toHaveProperty('id')
-        // })
-
+        for (let i = 0; i < body.results.length; i++) {
+            await expect(body.results[i]).toHaveProperty('id');
+            await expect(body.results[i]).toHaveProperty('uuid');
+            await expect(body.results[i]).toHaveProperty('userId');
+            await expect(body.results[i]).toHaveProperty('bankName');
+            await expect(body.results[i]).toHaveProperty('accountNumber');
+            await expect(body.results[i]).toHaveProperty('routingNumber');
+            await expect(body.results[i]).toHaveProperty('isDeleted');
+            await expect(body.results[i]).toHaveProperty('createdAt');
+            await expect(body.results[i]).toHaveProperty('modifiedAt');
+        }
     });
 
     test("Should delete bank account", async ({ request}) => {
