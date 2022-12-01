@@ -13,7 +13,7 @@ test.describe('User Profile', () => {
     });
 
     test("Get profile by username should respond with code 200 and correct response body", async ({ request}) => {
-        const response = await request.get(`/${users.testuser.username}`);
+        const response = await request.get(`/users/profile/${users.testuser.username}`);
         await expect(response.status()).toBe(200);
         const body = JSON.parse(await response.text());
         await expect(body.user).toHaveProperty('firstName');

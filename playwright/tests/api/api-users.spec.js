@@ -1,5 +1,4 @@
 import {expect, test} from "@playwright/test";
-import users from "../../../cypress/fixtures/users.json";
 
 test.describe('Users', () => {
     test.beforeEach(async ({request}) => {
